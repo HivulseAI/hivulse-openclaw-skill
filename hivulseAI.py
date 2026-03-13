@@ -25,8 +25,7 @@ class HivulseAI:
             config = ConfigManager()
             self.api_key = config.get_api_key()
 
-        self.base_url = 'https://desktop.hivulse.com'
-        # self.base_url = 'http://127.0.0.1:8001'
+        self.base_url = 'https://cloud.hivulse.com'
         self.repo_id = None
         self.default_branch_id = None
 
