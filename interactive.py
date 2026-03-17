@@ -132,7 +132,7 @@ def main():
     try:
         success = ai.run(directory, doc_type, task_name)
         if success:
-            print("\n🎉 文档生成流程完成！")
+            print("\n🎉 文档生成流程完成！完成后将会发送邮件，请查收")
         else:
             print("\n❌ 文档生成流程失败")
     except KeyboardInterrupt:

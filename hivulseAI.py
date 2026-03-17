@@ -25,7 +25,8 @@ class HivulseAI:
             config = ConfigManager()
             self.api_key = config.get_api_key()
 
-        self.base_url = 'https://cloud.hivulse.com'
+        self.base_url = 'https://desktop.hivulse.com'
+        # self.base_url = 'http://127.0.0.1:8001'
         self.repo_id = None
         self.default_branch_id = None
 
@@ -230,14 +231,11 @@ class HivulseAI:
             "repo_id": self.repo_id,
             "is_advanced": False
         }
-
         try:
             response = requests.post(url, json=data, headers=self.headers)
             response.raise_for_status()
 
             result = response.json()
-            print(f"✅ 文档生成成功: {self.doc_types[doc_type]}")
-            print(f"📋 任务ID: {result.get('task_id', '未知')}")
             return True
 
         except Exception as e:
@@ -258,10 +256,10 @@ class HivulseAI:
             return False
 
         # 3. 生成文档
+        # generate_document 返回 task_id（或 False），这里只关心是否调用成功
         if not self.generate_document(doc_type, task_name):
             return False
-
-        print("🎉 所有操作完成！等待文档生成后邮件回复")
+        print("文档开始生成，完成后将发送邮件给您")
         return True
 
 

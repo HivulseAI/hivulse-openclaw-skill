@@ -186,6 +186,8 @@ def main():
 
         if success:
             print("\n🎉 hivulseAI 处理完成！")
+            print("📧 文档生成功后将通过邮件发送到您的邮箱")
+
             sys.exit(0)
         else:
             print("\n❌ hivulseAI 处理失败")

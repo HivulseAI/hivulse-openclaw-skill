@@ -3,15 +3,11 @@ name: hivulseAI
 description: hivulse蜂巢 AI 是一款面向软件开发的自动化技术文档生成工具，通过指定目录代码一键生成多种规范化技术文档。目前已支持的文档类型包括：用户需求说明书、需求规格说明书、系统概要设计说明、系统详细设计说明等10几种报告。申请API Key请访问 www.hivulse.com
 
 metadata:
-  {
-    "openclaw": {
-      "emoji": "📄",
-      "requires": {
-        "env": ["HIVULSE_API_KEY"]
-      },
-      "primaryEnv": "HIVULSE_API_KEY"
-    }
-  }
+  openclaw:
+    emoji: "📄"
+    requires:
+      env: ["HIVULSE_API_KEY"]
+    primaryEnv: "HIVULSE_API_KEY"
 user-invocable: true
 ---
 
@@ -64,6 +60,11 @@ export HIVULSE_API_KEY="your-api-key-here"
 - "使用hivulseAI生成需求规格说明书"
 - "为这个项目创建系统设计文档"
 
+## 执行方式
+### 通过Python脚本执行
+`python3 hivulseAI.py <目录路径> <文档类型编号> [--task-name "任务名称"]`
+
+
 ## 📋 参数说明
 
 | 参数 | 说明 | 示例 |
@@ -102,20 +103,20 @@ export HIVULSE_API_KEY="your-api-key-here"
 
 ### 1. 文件上传阶段
 ```bash
-POST /api/v1/repo/upload/file/
+POST /api/v1/claw/upload/file/
 - 第一个文件：不带branch_id
-- 后续文件：带branch_id（从第一个文件响应中获取）
+- 后续文件：带branch_id（从第一个文件响应中获取default_branch_id）
 ```
 
 ### 2. 状态检查阶段
 ```bash
-POST /api/v1/repo/upload/status/
+POST /api/v1/claw/upload/status/
 - 参数：uuid（使用default_branch_id）
 ```
 
 ### 3. 文档生成阶段
 ```bash
-POST /api/v1/template_wiki/
+POST /api/v1/claw/template_wiki/
 - 参数：task_name, template_base_id, branch_id, repo_id, is_advanced
 ```
 
